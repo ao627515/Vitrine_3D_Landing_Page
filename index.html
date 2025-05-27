@@ -1,13 +1,176 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explorez nos modèles 3D</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
-    <title>Vitre 3D</title>
 </head>
+
 <body>
-    
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="main-title">Explorez nos modèles 3D</h1>
+            <p class="subtitle">
+                Découvrez notre collection de modèles 3D interactifs haute qualité,
+                conçus pour vous offrir une expérience immersive unique.
+            </p>
+        </header>
+
+        <!-- Grille des modèles -->
+        <main class="models-grid">
+            <!-- Modèle 1 -->
+            <article class="model-card"
+                onclick="openModal('model-1', 'Modèle Architecture', 'Un modèle architectural détaillé avec textures réalistes et éclairage dynamique.')">
+                <div class="iframe-container">
+                    <iframe src="models/model-1/index.html" class="model-iframe" title="Modèle 3D 1" loading="lazy">
+                        <!-- Fallback pour navigateurs sans support iframe -->
+                        <div class="iframe-placeholder">
+                            <div class="placeholder-icon"></div>
+                            <p>Modèle 3D interactif</p>
+                            <small>Votre navigateur ne supporte pas les iframes</small>
+                        </div>
+                    </iframe>
+                </div>
+                <h3 class="model-title">Modèle Architecture</h3>
+                <p class="model-description">
+                    Un modèle architectural détaillé avec textures réalistes et éclairage dynamique.
+                </p>
+            </article>
+
+            <!-- Modèle 2 -->
+            <article class="model-card"
+                onclick="openModal('model-2', 'Modèle Véhicule', 'Véhicule haute résolution avec matériaux PBR et animations fluides.')">
+                <div class="iframe-container">
+                    <iframe src="models/model-2/index.html" class="model-iframe" title="Modèle 3D 2" loading="lazy">
+                        <div class="iframe-placeholder">
+                            <div class="placeholder-icon"></div>
+                            <p>Modèle 3D interactif</p>
+                            <small>Votre navigateur ne supporte pas les iframes</small>
+                        </div>
+                    </iframe>
+                </div>
+                <h3 class="model-title">Modèle Véhicule</h3>
+                <p class="model-description">
+                    Véhicule haute résolution avec matériaux PBR et animations fluides.
+                </p>
+            </article>
+
+            <!-- Modèle 3 -->
+            <article class="model-card"
+                onclick="openModal('model-3', 'Modèle Organique', 'Forme organique complexe avec surfaces lisses et détails sculptés.')">
+                <div class="iframe-container">
+                    <iframe src="models/model-3/index.html" class="model-iframe" title="Modèle 3D 3" loading="lazy">
+                        <div class="iframe-placeholder">
+                            <div class="placeholder-icon"></div>
+                            <p>Modèle 3D interactif</p>
+                            <small>Votre navigateur ne supporte pas les iframes</small>
+                        </div>
+                    </iframe>
+                </div>
+                <h3 class="model-title">Modèle Organique</h3>
+                <p class="model-description">
+                    Forme organique complexe avec surfaces lisses et détails sculptés.
+                </p>
+            </article>
+
+            <!-- Modèle 4 -->
+            <article class="model-card"
+                onclick="openModal('model-4', 'Modèle Industriel', 'Équipement industriel avec composants mécaniques et finitions métalliques.')">
+                <div class="iframe-container">
+                    <iframe src="models/model-4/index.html" class="model-iframe" title="Modèle 3D 4" loading="lazy">
+                        <div class="iframe-placeholder">
+                            <div class="placeholder-icon"></div>
+                            <p>Modèle 3D interactif</p>
+                            <small>Votre navigateur ne supporte pas les iframes</small>
+                        </div>
+                    </iframe>
+                </div>
+                <h3 class="model-title">Modèle Industriel</h3>
+                <p class="model-description">
+                    Équipement industriel avec composants mécaniques et finitions métalliques.
+                </p>
+            </article>
+        </main>
+
+        <!-- Modal pour vue détaillée -->
+        <div class="modal-overlay" id="modelModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="modalTitle">Modèle 3D</h2>
+                    <button class="close-btn" onclick="closeModal()">✕</button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-viewer">
+                        <iframe id="modalIframe" class="modal-iframe"></iframe>
+                    </div>
+                    <div class="modal-info">
+                        <div class="info-section">
+                            <div class="info-title">Description</div>
+                            <div class="info-text" id="modalDescription">
+                                Description du modèle 3D sélectionné.
+                            </div>
+                        </div>
+
+                        <div class="info-section">
+                            <div class="info-title">Contrôles de vue</div>
+                            <div class="controls-panel">
+                                <div class="control-group">
+                                    <div class="control-label">Rotation</div>
+                                    <div class="control-buttons">
+                                        <button class="control-btn active"
+                                            onclick="setViewMode('rotate')">Libre</button>
+                                        <button class="control-btn" onclick="setViewMode('orbit')">Orbital</button>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="control-label">Éclairage</div>
+                                    <div class="control-buttons">
+                                        <button class="control-btn active"
+                                            onclick="setLighting('default')">Standard</button>
+                                        <button class="control-btn" onclick="setLighting('studio')">Studio</button>
+                                        <button class="control-btn"
+                                            onclick="setLighting('dramatic')">Dramatique</button>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="control-label">Vue prédéfinie</div>
+                                    <div class="control-buttons">
+                                        <button class="control-btn" onclick="setView('front')">Face</button>
+                                        <button class="control-btn" onclick="setView('side')">Profil</button>
+                                        <button class="control-btn" onclick="setView('top')">Dessus</button>
+                                        <button class="control-btn" onclick="setView('iso')">Iso</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info-section">
+                            <div class="info-title">Informations techniques</div>
+                            <div class="info-text">
+                                • Format: GLB/GLTF 2.0<br>
+                                • Polygones: ~50K triangles<br>
+                                • Textures: 4K PBR<br>
+                                • Animations: Incluses
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer optionnel -->
+        <footer class="footer">
+            <p>&copy; 2025 - Galerie de modèles 3D • Design moderne et responsive</p>
+        </footer>
+    </div>
     <script src="index.js" type="module"></script>
 </body>
+
 </html>
